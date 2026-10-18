@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boda de Iliana & Carlos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy-dark: #07101e;
+            --navy-main: #0e1c36;
+            --navy-card: #142442;
+            --cream-bg: #fbf9f5;
+            --cream-card: #f5f0eb;
+            --white-soft: #ffffff;
+            --cream-accent: #e8dfd8;
+            --cream-light: #f3ede7;
+            --border-cream: rgba(232, 223, 216, 0.5);
+            --text-dark: #222222;
+            --text-light: #555555;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--cream-bg);
+            color: var(--text-dark);
+            text-align: center;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .serif-font {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .music-control {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: var(--navy-main);
+            color: var(--cream-bg);
+            border: 1px solid var(--cream-accent);
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            font-size: 1.4rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+        }
+
+        header {
+            position: relative;
+            padding: 60px 20px;
+            background: linear-gradient(rgba(7, 16, 30, 0.75), rgba(7, 16, 30, 0.75)), 
+                        url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+            color: var(--cream-bg);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-box {
+            border: 1px solid var(--border-cream);
+            padding: 45px 35px;
+            background-color: rgba(9, 21, 41, 0.85);
+            backdrop-filter: blur(5px);
+            max-width: 680px;
+            width: 95%;
+            border-radius: 12px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+        }
+
+        .hero-header-tag {
+            font-size: 0.95rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--cream-accent);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        h1.names {
+            font-family: 'Great Vibes', cursive;
+            font-size: 5rem;
+            margin: 5px 0 15px;
+            font-weight: normal;
+            color: var(--white-soft);
+            line-height: 1.1;
+        }
+
+        .hero-subtext {
+            font-size: 1.05rem;
+            color: #e0e0e0;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        .hero-date-wrapper {
+            border-top: 1px solid var(--border-cream);
+            border-bottom: 1px solid var(--border-cream);
+            padding: 12px 0;
+            margin: 20px 0 30px;
+        }
+
+        .hero-date {
+            font-size: 1.25rem;
+            letter-spacing: 4px;
+            font-weight: 400;
+            color: var(--cream-light);
+            text-transform: uppercase;
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .time-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(232, 223, 216, 0.3);
+            padding: 12px;
+            border-radius: 8px;
+            min-width: 75px;
+        }
+
+        .time-box span {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--white-soft);
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .time-box label {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--cream-accent);
+            font-weight: 500;
+        }
+
+        section {
+            padding: 60px 20px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--navy-dark);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .divider {
+            width: 60px;
+            height: 2px;
+            background-color: var(--cream-accent);
+            margin: 0 auto 30px;
+        }
+
+        .feature-photo {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            margin: 30px 0;
+        }
+        .feature-photo2{
+            height: 400px;
+            width: 40%;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            margin: 30px 0
+        }
+
+        .photo-grid-two {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .photo-grid-two img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: var(--cream-card);
+            padding: 30px 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(232, 223, 216, 0.4);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h4 {
+            font-size: 1.8rem;
+            color: var(--navy-main);
+            margin-bottom: 10px;
+        }
+
+        .btn-action {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 25px;
+            background-color: var(--navy-main);
+            color: var(--white-soft);
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            border: 1px solid var(--cream-accent);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-action:hover {
+            background-color: var(--navy-dark);
+            transform: translateY(-2px);
+        }
+
+        .dress-code-box {
+            background-color: var(--white-soft);
+            padding: 35px 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(232, 223, 216, 0.4);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            margin: 30px 0;
+        }
+
+        .gift-box {
+            background-color: var(--white-soft);
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(10, 25, 47, 0.06);
+            border: 1px solid rgba(232, 223, 216, 0.5);
+            margin: 30px 0;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(7, 16, 30, 0.7);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-card {
+            background: var(--white-soft);
+            border-radius: 16px;
+            padding: 35px 25px;
+            max-width: 480px;
+            width: 100%;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            border: 1px solid var(--cream-accent);
+            position: relative;
+            text-align: left;
+            animation: popIn 0.3s ease-out;
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #888;
+        }
+
+        .modal-card h3 {
+            font-size: 2rem;
+            color: var(--navy-main);
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .bank-item {
+            margin-top: 15px;
+            padding: 12px 15px;
+            background: var(--cream-bg);
+            border-radius: 8px;
+            border: 1px solid rgba(232, 223, 216, 0.6);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .bank-info {
+            font-size: 0.95rem;
+        }
+
+        .bank-info strong {
+            display: block;
+            color: var(--navy-dark);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-copy {
+            background-color: var(--navy-main);
+            color: var(--white-soft);
+            border: none;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-copy:hover {
+            background-color: var(--navy-dark);
+        }
+
+        .form-box {
+            background: var(--white-soft);
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(10, 25, 47, 0.08);
+            border: 1px solid rgba(232, 223, 216, 0.5);
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: var(--navy-dark);
+            font-weight: 500;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            background-color: var(--cream-bg);
+            color: var(--text-dark);
+            outline: none;
+            transition: border 0.3s;
+        }
+
+        input[type="text"]:focus, select:focus {
+            border-color: var(--navy-main);
+        }
+
+        .guest-input-container {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--navy-main);
+            color: var(--white-soft);
+            border: 1px solid var(--cream-accent);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--navy-dark);
+        }
+
+        footer {
+            background-color: var(--navy-dark);
+            color: var(--cream-bg);
+            padding: 30px 20px;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .hero-box { padding: 30px 18px; }
+            h1.names { font-size: 3.8rem; }
+            .section-title { font-size: 2rem; }
+            .photo-grid-two { grid-template-columns: 1fr; }
+            .photo-grid-two img { height: 200px; }
+            .time-box { min-width: 60px; padding: 8px; }
+            .time-box span { font-size: 1.4rem; }
+            .hero-date { font-size: 1.05rem; letter-spacing: 2px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Música de fondo (Romántica instrumental garantizada) -->
+    <audio id="background-music" loop preload="auto">
+        <source src="https://upload.wikimedia.org/wikipedia/commons/2/21/Mendelssohn_-_Wedding_March.ogg" type="audio/ogg">
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mp3">
+    </audio>
+    <button class="music-control" onclick="toggleMusic()" id="music-btn" title="Reproducir / Pausar Música">🎵</button>
+
+    <!-- Header / Portada -->
+    <header>
+        <div class="hero-box">
+            <p class="hero-header-tag">NUESTRA BODA</p>
+            <h1 class="names">Iliana & Carlos</h1>
+            <p class="hero-subtext">¡Nos casamos y queremos celebrar contigo!</p>
+            
+            <div class="hero-date-wrapper">
+                <div class="hero-date">06 · MARZO · 2027 · 18:00 HS</div>
+            </div>
+
+            <div class="countdown-timer">
+                <div class="time-box"><span id="days">00</span><label>DÍAS</label></div>
+                <div class="time-box"><span id="hours">00</span><label>HS</label></div>
+                <div class="time-box"><span id="minutes">00</span><label>MIN</label></div>
+                <div class="time-box"><span id="seconds">00</span><label>SEG</label></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Nuestra Historia -->
+    <section>
+        <h2 class="section-title">Nuestra Historia</h2>
+        <div class="divider"></div>
+        <p style="color: var(--text-light); max-width: 700px; margin: 0 auto 20px;">
+            Queremos compartir este día tan especial con las personas que más amamos. ¡Gracias por acompañarnos en el comienzo de nuestra nueva etapa juntos!
+        </p>
+        <img src="boda1.png" alt="Iliana y Carlos juntos" class="feature-photo">
+    </section>
+
+    <!-- Dónde y Cuándo -->
+    <section>
+        <h2 class="section-title">¿Dónde y Cuándo?</h2>
+        <div class="divider"></div>
+        
+        <div class="cards-grid">
+            <div class="card">
+                <h4>Ceremonia</h4>
+                <p><strong>Hora:</strong> 18:00 hs</p>
+                <p><strong>Lugar:</strong> Parroquia San Francisco</p>
+                <p>Av. Principal 123, Ciudad</p>
+                <a href="https://maps.google.com" target="_blank" class="btn-action">📍 VER EN GOOGLE MAPS</a>
+            </div>
+
+            <div class="card">
+                <h4>Fiesta</h4>
+                <p><strong>Hora:</strong> 19:30 hs</p>
+                <p><strong>Lugar:</strong> Salón Quinta Paraíso Real</p>
+                <p>Camino de las Rosas Km 4.5</p>
+                <a href="https://maps.google.com" target="_blank" class="btn-action">📍 VER EN GOOGLE MAPS</a>
+            </div>
+        </div>
+
+        <div class="photo-grid-two">
+            <img src="boda4.png" alt="Momento romántico">
+            <img src="boda2.png" alt="Detalle de boda">
+        </div>
+    </section>
+
+    <!-- Dress Code -->
+    <section>
+        <div class="dress-code-box">
+            <h3 class="serif-font" style="font-size: 2.2rem; color: var(--navy-dark); margin-bottom: 10px;">Código de Vestimenta</h3>
+            <p style="font-size: 1.2rem; font-weight: 500; color: var(--navy-main);">FORMAL / ELEGANTE</p>
+            <p style="color: var(--text-light); margin-top: 5px;">Nos encantaría verlos vestidos de gala para festejar esta gran noche juntos.</p>
+        </div>
+
+        <img src="boda3.png" alt="Anillos y celebración" class=" feature-photo2">
+        <img src="boda5.png" alt="Anillos y celebración" class=" feature-photo2">
+    </section>
+
+    <!-- Sección Regalos -->
+    <section>
+        <h2 class="section-title">Regalos</h2>
+        <div class="divider"></div>
+        <div class="gift-box">
+            <p style="color: var(--text-light); margin-bottom: 20px; font-size: 1.05rem;">
+                Tu presencia es nuestro mejor regalo. Si deseas hacernos un presente, puedes colaborar con nuestra luna de miel mediante una transferencia bancaria.
+            </p>
+            
+            <button class="btn-action" onclick="openModal()">🎁 VER DATOS BANCARIOS</button>
+        </div>
+    </section>
+
+    <!-- TARJETA FLOTANTE (MODAL DE DATOS BANCARIOS) -->
+    <div class="modal-overlay" id="bankModal" onclick="closeModalOnOverlay(event)">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeModal()">✖</button>
+            <h3 class="serif-font">Datos Bancarios</h3>
+            <p style="text-align: center; color: var(--text-light); font-size: 0.9rem; margin-bottom: 15px;">Iliana & Carlos</p>
+
+            <div class="bank-item">
+                <div class="bank-info">
+                    <strong>Banco</strong>
+                    Banco Galicia
+                </div>
+            </div>
+
+            <div class="bank-item">
+                <div class="bank-info">
+                    <strong>Titular</strong>
+                    Iliana & Carlos
+                </div>
+            </div>
+
+            <div class="bank-item">
+                <div class="bank-info">
+                    <strong>CBU</strong>
+                    <span id="cbuText">0000003100012345678901</span>
+                </div>
+                <button class="btn-copy" onclick="copyToClipboard('cbuText', this)">Copiar</button>
+            </div>
+
+            <div class="bank-item">
+                <div class="bank-info">
+                    <strong>Alias</strong>
+                    <span id="aliasText">BODA.ILIANA.CARLOS</span>
+                </div>
+                <button class="btn-copy" onclick="copyToClipboard('aliasText', this)">Copiar</button>
+            </div>
+
+            <p style="font-size: 0.85rem; color: #777; margin-top: 20px; text-align: center;">¡Muchas gracias por acompañarnos!</p>
+        </div>
+    </div>
+
+    <!-- Confirmación de Asistencia -->
+    <section>
+        <h2 class="section-title">Confirmación de Asistencia</h2>
+        <div class="divider"></div>
+        <p style="margin-bottom: 25px; color: var(--text-light);">Por favor, confirma tu asistencia antes del 06 de Febrero de 2027.</p>
+
+        <div class="form-box">
+            <form id="rsvp-form">
+                <div class="form-group">
+                    <label>¿Asistirás al evento? *</label>
+                    <select name="asistencia" id="asistenciaSelect" onchange="handleAttendanceChange()" required>
+                        <option value="">Selecciona una opción</option>
+                        <option value="Sí, ahí estaré">¡Sí, ahí estaré / estaremos!</option>
+                        <option value="No podré asistir">Lamentablemente no podré asistir</option>
+                    </select>
+                </div>
+
+                <!-- Si ASISTE -->
+                <div id="attendanceFields" style="display: none;">
+                    <div class="form-group">
+                        <label>Cantidad de personas que asisten *</label>
+                        <select name="cantidad" id="guestCount" onchange="generateGuestInputs()">
+                            <option value="1">1 persona</option>
+                            <option value="2">2 personas</option>
+                            <option value="3">3 personas</option>
+                            <option value="4">4 personas</option>
+                            <option value="5">5 personas</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nombre(s) y Apellido(s) de los asistentes *</label>
+                        <div id="guestInputsContainer" class="guest-input-container">
+                            <!-- Los inputs se generan dinámicamente -->
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Restricciones Alimentarias / Alergias</label>
+                        <input type="text" name="dietas" placeholder="Ej. Celíaco, Vegetariano, Vegano, Ninguna">
+                    </div>
+                </div>
+
+                <!-- Si NO ASISTE -->
+                <div id="declinedFields" style="display: none;">
+                    <div class="form-group">
+                        <label>Tu Nombre y Apellido *</label>
+                        <input type="text" name="nombreDeclined" id="nombreDeclined" placeholder="Ingresa tu nombre y apellido">
+                    </div>
+                </div>
+
+                <input type="hidden" name="nombre" id="finalNombre">
+
+                <button type="submit" class="btn-submit" id="submit-btn">CONFIRMAR RESPUESTA</button>
+            </form>
+            <p id="response-msg" style="margin-top: 20px; text-align: center; font-weight: 600;"></p>
+        </div>
+    </section>
+
+    <footer>
+        <h3 class="serif-font" style="font-size: 1.8rem; margin-bottom: 5px;">Iliana & Carlos</h3>
+        <p>¡Esperamos verte muy pronto!</p>
+    </footer>
+
+    <script>
+        // Fecha de la Boda: 06 de Marzo de 2027 - 18:00 hs
+        const weddingDate = new Date("Mar 6, 2027 18:00:00").getTime();
+
+        const countdownFunction = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                document.querySelector(".countdown-timer").innerHTML = "<h3 class='serif-font' style='font-size: 2rem; color: var(--cream-accent);'>¡Hoy es el gran día!</h3>";
+            }
+        }, 1000);
+
+        // Lógica para mostrar/ocultar campos según la respuesta
+        function handleAttendanceChange() {
+            const status = document.getElementById('asistenciaSelect').value;
+            const attendanceFields = document.getElementById('attendanceFields');
+            const declinedFields = document.getElementById('declinedFields');
+            const nombreDeclined = document.getElementById('nombreDeclined');
+
+            if (status === "Sí, ahí estaré") {
+                attendanceFields.style.display = "block";
+                declinedFields.style.display = "none";
+                nombreDeclined.removeAttribute('required');
+                generateGuestInputs();
+            } else if (status === "No podré asistir") {
+                attendanceFields.style.display = "none";
+                declinedFields.style.display = "block";
+                nombreDeclined.setAttribute('required', 'true');
+            } else {
+                attendanceFields.style.display = "none";
+                declinedFields.style.display = "none";
+                nombreDeclined.removeAttribute('required');
+            }
+        }
+
+        // Generar campos de texto para nombres de asistentes
+        function generateGuestInputs() {
+            const count = parseInt(document.getElementById('guestCount').value);
+            const container = document.getElementById('guestInputsContainer');
+            container.innerHTML = '';
+
+            for (let i = 1; i <= count; i++) {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.name = `invitado_${i}`;
+                input.placeholder = `Nombre y Apellido del Asistente ${i}`;
+                input.required = true;
+                input.className = 'guest-name-input';
+                container.appendChild(input);
+            }
+        }
+
+        // Funciones del Modal (Datos Bancarios)
+        function openModal() {
+            document.getElementById('bankModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('bankModal').style.display = 'none';
+        }
+
+        function closeModalOnOverlay(event) {
+            if (event.target.id === 'bankModal') {
+                closeModal();
+            }
+        }
+
+        function copyToClipboard(elementId, btn) {
+            const textToCopy = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const originalText = btn.innerText;
+                btn.innerText = "¡Copiado!";
+                btn.style.backgroundColor = "#2e7d32";
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.style.backgroundColor = "";
+                }, 2000);
+            }).catch(err => {
+                console.error("Error al copiar: ", err);
+            });
+        }
+
+        // Control de Música
+        const music = document.getElementById('background-music');
+        const musicBtn = document.getElementById('music-btn');
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                musicBtn.innerText = "🔇";
+            } else {
+                music.play().then(() => {
+                    musicBtn.innerText = "🎵";
+                    isPlaying = true;
+                }).catch(err => console.log("Bloqueado por navegador", err));
+            }
+        }
+
+        document.body.addEventListener('click', function() {
+            if (!isPlaying) {
+                music.play().then(() => {
+                    isPlaying = true;
+                    musicBtn.innerText = "🎵";
+                }).catch(e => console.log("Audio en espera de interacción"));
+            }
+        }, { once: true });
+
+        // Enviar Formulario
+        const scriptURL = 'TU_URL_DE_GOOGLE_APPS_SCRIPT_AQUI';
+        const form = document.getElementById('rsvp-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const responseMsg = document.getElementById('response-msg');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            submitBtn.innerText = "ENVIANDO...";
+            submitBtn.disabled = true;
+
+            const status = document.getElementById('asistenciaSelect').value;
+            let finalName = "";
+
+            if (status === "Sí, ahí estaré") {
+                const guestInputs = document.querySelectorAll('.guest-name-input');
+                const names = Array.from(guestInputs).map(input => input.value.trim()).filter(val => val !== "");
+                finalName = names.join(" | ");
+            } else {
+                finalName = document.getElementById('nombreDeclined').value.trim();
+            }
+
+            document.getElementById('finalNombre').value = finalName;
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    responseMsg.style.color = "#2e7d32";
+                    responseMsg.innerText = "¡Muchas gracias! Tu respuesta ha sido guardada.";
+                    form.reset();
+                    document.getElementById('attendanceFields').style.display = 'none';
+                    document.getElementById('declinedFields').style.display = 'none';
+                    submitBtn.innerText = "ENVIADO CON ÉXITO";
+                })
+                .catch(error => {
+                    responseMsg.style.color = "#c62828";
+                    responseMsg.innerText = "Hubo un error al enviar. Por favor intentalo nuevamente.";
+                    submitBtn.innerText = "CONFIRMAR RESPUESTA";
+                    submitBtn.disabled = false;
+                });
+        });
+    </script>
+</body>
+</html>
